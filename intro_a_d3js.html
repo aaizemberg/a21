@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>mini ejemplo con d3.js</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+  <div id="vis"></div>
+  
+<script>
+  var datos = { result: "ok", data : [
+  {nombre: 'macri', seguidores: 100},
+  {nombre: 'cfk', seguidores: 200},
+  {nombre: 'alberto', seguidores: 50}              ]
+};
+
+if (datos.result == 'ok') {
+  d3.select("div#vis").append("ul");
+  d3.select('ul').selectAll("li")
+    .data( datos.data )
+    .join("li")
+      .html((d) => "<i>" + d.nombre + "</i> tiene " + d.seguidores);
+}
+</script>  
+  
+</body>
+</html>

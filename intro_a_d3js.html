@@ -9,21 +9,20 @@
 <body>
 
   <div id="vis"></div>
-  
+    
 <script>
-  var datos = { result: "ok", data : [
-  {nombre: 'macri', seguidores: 100},
-  {nombre: 'cfk', seguidores: 200},
-  {nombre: 'alberto', seguidores: 50}              ]
-};
+var url = "https://covid19api.it.itba.edu.ar/api/v0.3.0/provinces";
 
-if (datos.result == 'ok') {
-  d3.select("div#vis").append("ul");
-  d3.select('ul').selectAll("li")
-    .data( datos.data )
-    .join("li")
-      .html((d) => "<i>" + d.nombre + "</i> tiene " + d.seguidores);
-}
+d3.json(url).then(function(data) {
+  // console.log(data);
+  
+  d3.select("div#vis").append("ol");
+
+  d3.select('ol').selectAll("li").data( data )
+  .join("li")
+  .text((d) => d.province);
+
+});  
 </script>  
   
 </body>
